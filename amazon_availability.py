@@ -5,7 +5,7 @@ import os
 
 FREQUENCY = 1.5  # in minutes
 system = "windows"  # "mac" or "windows"
-types = ["fresh"]
+types = ["fresh", "whole food"]
 
 email = email # your login ID email or phone number
 password = password
