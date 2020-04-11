@@ -37,7 +37,8 @@ def iterate():
                 driver.find_elements_by_xpath("//a[contains(.,'Continue')]")[0].click()
                 no_available_text = 'No delivery windows available. New windows are released throughout the day.'
                 time.sleep(5)
-                available = no_available_text not in driver.find_elements_by_tag_name("html")[0].text
+                text = driver.find_elements_by_tag_name("html")[0].text
+                available = "Schedule your order" in text and no_available_text not in text
                 if available:
                     send_notification(type_)
                     exit()
@@ -52,13 +53,15 @@ def iterate():
                 driver.find_elements_by_xpath("//span[contains(.,'Continue')]")[0].click()
                 no_available_text = 'No delivery windows available. New windows are released throughout the day.'
                 time.sleep(5)
-                available = no_available_text not in driver.find_elements_by_tag_name("html")[0].text
+                text = driver.find_elements_by_tag_name("html")[0].text
+                available = "Schedule your order" in text and no_available_text not in text
                 if available:
                     send_notification(type_)
                     exit()
                 print(str(datetime.datetime.now()) + " {} Not available".format(type_))
         time.sleep(FREQUENCY * 60)
         i += 1
+
 
 if __name__ == "__main__":
     while True:
